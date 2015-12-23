@@ -1,8 +1,8 @@
-FROM sequenceiq/hadoop-docker:2.6.0
-MAINTAINER SequenceIQ
+FROM sectong/hadoop:2.6.0
+MAINTAINER SECTONG
 
 #support for Hadoop 2.6.0
-RUN curl -s http://d3kbcqa49mib13.cloudfront.net/spark-1.5.1-bin-hadoop2.6.tgz | tar -xz -C /usr/local/
+RUN curl -s http://apache.fayea.com/spark/spark-1.5.1/spark-1.5.1-bin-hadoop2.6.tgz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s spark-1.5.1-bin-hadoop2.6 spark
 ENV SPARK_HOME /usr/local/spark
 RUN mkdir $SPARK_HOME/yarn-remote-client
@@ -18,7 +18,7 @@ RUN chown root.root /etc/bootstrap.sh
 RUN chmod 700 /etc/bootstrap.sh
 
 #install R
-RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-RUN yum -y install R
+#RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+#RUN yum -y install R
 
 ENTRYPOINT ["/etc/bootstrap.sh"]
